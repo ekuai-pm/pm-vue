@@ -1,29 +1,37 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Routes from "./routes.js";
 
-Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+	if (onResolve || onReject) {
+		return originalPush.call(this, location, onResolve, onReject);
+	}
+	return originalPush.call(this, location).catch(err => err);
+};
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+	mode: "history",
+	base: process.env.BASE_URL,
+	routes: Routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+	let path = to.path.split("/");
+	if (window.onloaded === true || path[1] === "redirect") {
+		next();
+	} else if (localStorage.getItem("mall_session") === null) {
+		if (path[1] === "account" || path[1] === "order") {
+			next({path: "/user/login", query: {redirect: to.path}});
+		} else {
+			next();
+		}
+	} else {
+		next({path: "/redirect", query: {redirect: to.path, do: "setCookie"}});
+	}
+	console.log(to, from, window.onloaded);
+});
+
+
+export default router;
