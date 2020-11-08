@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar app color="primary" dark>
-		<div class="d-flex align-center">
+		<div class="d-flex logo ">
 			<v-img
 					alt="Vuetify Logo"
 					class="shrink mr-2"
@@ -52,13 +52,26 @@ export default {
 		tab: null,
 	}),
 	watch: {
-		tab(newValue) {
-
+		tab(newValue, oldValue) {
+			if (oldValue !== null) {
+				let url = "/";
+				switch (newValue) {
+					case 1:
+						url = "/forum";
+						break;
+					case 2:
+						url = "/user";
+						break;
+				}
+				this.$router.push(url);
+			}
 		},
 	},
 };
 </script>
 
 <style scoped>
-
+.logo {
+	padding: 0 20px;
+}
 </style>

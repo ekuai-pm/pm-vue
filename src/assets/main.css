@@ -1,0 +1,30 @@
+.margin-10 {
+	margin: 10px;
+}
+
+.margin-auto {
+	margin: auto;
+}
+
+.padding-10 {
+	padding: 10px;
+}
+
+.emptyBox {
+	padding: 1px;
+	margin: 20px;
+}
+
+.emptyBox-lg {
+	padding: 1px;
+	margin: 50px;
+}
+
+.emptyBox-xlg {
+	padding: 1px;
+	margin: 100px;
+}
+
+.v-btn__content {
+	text-transform: none !important;
+}

@@ -1,23 +1,30 @@
 const routesRaw = [{
 	path: "/",
-	component: () => import( /* webpackChunkName: "util" */ "@/views/Home.vue"),
+	component: () => import( /* webpackChunkName: "util" */ "@/views/Index/Index"),
 }, {
 	path: "/user",
-	redirect: "/user/login",
-	component: () => import( /* webpackChunkName: "user" */ "@/views/user/User.vue"),
+	redirect: "/user/auth",
+	component: () => import( /* webpackChunkName: "user" */ "@/views/Utils/EmptyFrame"),
 	children: [{
-		path: "login",
-		component: () => import( /* webpackChunkName: "user" */ "@/views/user/Login.vue"),
+		path: "auth",
+		component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Auth"),
+		children: [{
+			path: "login",
+			component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Login"),
+		}, {
+			path: "register",
+			component: () => import( /* webpackChunkName: "user" */ "@/views/Utils/EmptyFrame"),
+		}],
 	}, {
-		path: "register",
-		component: () => import( /* webpackChunkName: "user" */ "@/views/user/Register.vue"),
+		path: "space",
+		component: () => import( /* webpackChunkName: "user" */ "@/views/Utils/EmptyFrame"),
 	}],
 }, {
 	path: "/redirect",
-	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/Redirect.vue"),
+	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/EmptyFrame"),
 }, {
 	path: "*",
-	component: () => import( /* webpackChunkName: "util" */ "@/views/error/404.vue"),
+	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/EmptyFrame"),
 }];
 
 export default routesRaw;
