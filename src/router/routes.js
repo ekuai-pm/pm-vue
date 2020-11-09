@@ -13,7 +13,7 @@ const routesRaw = [{
 			component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Login"),
 		}, {
 			path: "register",
-			component: () => import( /* webpackChunkName: "user" */ "@/views/Utils/EmptyFrame"),
+			component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Register"),
 		}],
 	}, {
 		path: "space",

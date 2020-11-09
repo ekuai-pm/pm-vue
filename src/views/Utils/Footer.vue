@@ -1,7 +1,7 @@
 <template>
 	<v-footer dark padless>
 		<v-card flat tile class="primary lighten-1 white--text text-center footer-card">
-			<v-card-text>
+			<v-card-text class="footer-icon">
 				<v-btn class="mx-4 white--text" icon href="https://github.com/ekuai-pm" target="_blank">
 					<v-icon size="24px">
 						mdi-github
@@ -32,5 +32,9 @@ export default {
 <style scoped>
 .footer-card {
 	width: 100%;
+}
+
+.footer-icon {
+	padding: 4px;
 }
 </style>

@@ -1,9 +1,19 @@
 <template>
 	<div class="container">
 		<div class="bg" :style="{ backgroundImage: 'url('+url+')' }"></div>
-		<div class="page">
-			<router-view></router-view>
-		</div>
+		<v-card width="400">
+			<v-img height="132px" :src="url" class="title-img">
+				<v-card-title class="white--text mt-8 title-container">
+					<div class="text-h4 margin-auto">
+						Project Manager
+					</div>
+				</v-card-title>
+			</v-img>
+
+			<v-card-text>
+				<router-view></router-view>
+			</v-card-text>
+		</v-card>
 	</div>
 </template>
 
@@ -15,7 +25,7 @@ export default {
 	}),
 	mounted() {
 		this.url = this.getPic();
-		this.$router.push("/user/auth/login");
+		// this.$router.push("/user/auth/login");
 	},
 	methods: {
 		getPic() {
@@ -32,7 +42,6 @@ export default {
 
 .bg {
 	position: fixed;
-	/*z-index: -10000;*/
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -41,10 +50,14 @@ export default {
 	background-size: cover;
 }
 
-.page {
-	min-width: 300px;
-	padding: 20px;
-	background-color: rgba(255, 255, 255, 0.7);
-	border-radius: 0 0 5px 5px;
+.title-container {
+	height: 100px;
+	text-shadow: #000 2px 0 0, #000 0 2px 0, #000 -1px 0 0, #000 0 -1px 0;
+}
+
+</style>
+<style>
+.title-img .v-image__image {
+	filter: blur(4px);
 }
 </style>

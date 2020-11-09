@@ -11,7 +11,7 @@
 
 <script>
 import Header from "@/views/Utils/Header";
-import Footer from "@/views/Index/Footer";
+import Footer from "@/views/Utils/Footer";
 
 export default {
 	name: "App",
