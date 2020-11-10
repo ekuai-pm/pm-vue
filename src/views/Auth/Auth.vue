@@ -1,19 +1,20 @@
 <template>
 	<div class="container">
 		<div class="bg" :style="{ backgroundImage: 'url('+url+')' }"></div>
-		<v-card width="400">
-			<v-img height="132px" :src="url" class="title-img">
-				<v-card-title class="white--text mt-8 title-container">
-					<div class="text-h4 margin-auto">
-						Project Manager
-					</div>
-				</v-card-title>
-			</v-img>
-
-			<v-card-text>
-				<router-view></router-view>
-			</v-card-text>
-		</v-card>
+		<v-container class="vertical-center">
+			<v-card width="400">
+				<v-img height="132px" :src="url" class="title-img">
+					<v-card-title class="white--text mt-8 title-container">
+						<div class="text-h4 margin-auto">
+							Project Manager
+						</div>
+					</v-card-title>
+				</v-img>
+				<v-card-text>
+					<router-view></router-view>
+				</v-card-text>
+			</v-card>
+		</v-container>
 	</div>
 </template>
 
@@ -38,6 +39,12 @@ export default {
 <style scoped>
 .container {
 	height: 100%;
+	display: table;
+}
+
+.vertical-center {
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .bg {
