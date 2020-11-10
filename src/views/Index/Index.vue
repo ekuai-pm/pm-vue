@@ -32,5 +32,6 @@ export default {
 .container {
 	text-align: center;
 	max-width: min(800px, 90%);
+	margin: auto;
 }
 </style>

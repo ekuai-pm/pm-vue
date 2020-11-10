@@ -29,8 +29,8 @@ export default {
 @import "./assets/main.css";
 
 .content {
-	max-width: max(800px, 80%);
-	/*text-align: center;*/
 	margin: 30px auto;
+	min-height: calc(100% - 121px - 64px);
+	width: 100%;
 }
 </style>

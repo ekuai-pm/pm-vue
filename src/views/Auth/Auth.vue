@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="bg" :style="{ backgroundImage: 'url('+url+')' }"></div>
 		<v-container class="vertical-center">
-			<v-card width="400">
+			<v-card width="400" class="margin-auto">
 				<v-img height="132px" :src="url" class="title-img">
 					<v-card-title class="white--text mt-8 title-container">
 						<div class="text-h4 margin-auto">
