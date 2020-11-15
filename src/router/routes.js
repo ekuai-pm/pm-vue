@@ -18,13 +18,20 @@ const routesRaw = [{
 	}, {
 		path: "space",
 		component: () => import( /* webpackChunkName: "user" */ "@/views/Space/Space"),
+		children: [{
+			path: "login",
+			component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Login"),
+		}, {
+			path: "*",
+			component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/E404"),
+		}],
 	}],
 }, {
 	path: "/redirect",
 	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/EmptyFrame"),
 }, {
 	path: "*",
-	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/404"),
+	component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/E404"),
 }];
 
 export default routesRaw;

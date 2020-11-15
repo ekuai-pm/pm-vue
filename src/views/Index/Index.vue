@@ -1,5 +1,6 @@
 <template>
 	<v-container class="container">
+		<div class="emptyBox"></div>
 		<v-img
 				alt="Logo"
 				class="shrink mt-1 hidden-sm-and-down padding-10 margin-auto"

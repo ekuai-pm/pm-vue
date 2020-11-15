@@ -29,7 +29,7 @@ export default {
 @import "./assets/main.css";
 
 .content {
-	margin: 30px auto;
+	/*margin: 30px auto;*/
 	min-height: calc(100% - 121px - 64px);
 	width: 100%;
 }
