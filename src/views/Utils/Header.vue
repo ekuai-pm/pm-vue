@@ -20,17 +20,9 @@
 			/>
 		</div>
 		<v-tabs align-with-title show-arrows v-model="tab">
-			<v-tab>
-				<v-icon>mdi-home</v-icon>
-				首页
-			</v-tab>
-			<v-tab>
-				<v-icon>mdi-book</v-icon>
-				论坛
-			</v-tab>
-			<v-tab>
-				<v-icon>mdi-account-circle</v-icon>
-				个人中心
+			<v-tab v-for="(item,index) in headBar" :key="index">
+				<v-icon>{{ item.icon }}</v-icon>
+				{{ item.title }}
 			</v-tab>
 		</v-tabs>
 		<v-spacer></v-spacer>
@@ -49,21 +41,33 @@
 export default {
 	name: "Header",
 	data: () => ({
-		tab: null,
+		tab: 0,
+		loaded: false,
+		headBar: [
+			{icon: "mdi-home", title: "首页", to: ""},
+			{icon: "mdi-book", title: "讨论", to: "forum"},
+			{icon: "mdi-account-circle", title: "个人中心", to: "user"},
+		],
 	}),
+	mounted() {
+		//预计使用导航守卫实现该功能
+		// console.log(1, this.$route);
+		// let path = this.$route.fullPath.split("/");
+		// console.log(path);
+		// if (path) {
+		// 	for (let index in this.headBar) {
+		// 		if (this.headBar[index].to === path) {
+		// 			this.tab = index;
+		// 			break;
+		// 		}
+		// 	}
+		// }
+		this.loaded = true;
+	},
 	watch: {
-		tab(newValue, oldValue) {
-			if (oldValue !== null) {
-				let url = "/";
-				switch (newValue) {
-					case 1:
-						url = "/forum";
-						break;
-					case 2:
-						url = "/user";
-						break;
-				}
-				this.$router.push(url);
+		tab(newValue) {
+			if (this.loaded) {
+				this.$router.push("/" + this.headBar[newValue].to);
 			}
 		},
 	},

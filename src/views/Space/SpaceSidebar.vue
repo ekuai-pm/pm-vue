@@ -19,23 +19,11 @@
 			<v-divider></v-divider>
 			<v-list nav dense>
 				<v-list-item-group v-model="selected" color="primary">
-					<v-list-item key="file">
+					<v-list-item v-for="(item,index) in sideBar" :key="index">
 						<v-list-item-icon>
-							<v-icon>mdi-folder</v-icon>
+							<v-icon>{{ item.icon }}</v-icon>
 						</v-list-item-icon>
-						<v-list-item-title>文件</v-list-item-title>
-					</v-list-item>
-					<v-list-item key="group">
-						<v-list-item-icon>
-							<v-icon>mdi-account-multiple</v-icon>
-						</v-list-item-icon>
-						<v-list-item-title>群组</v-list-item-title>
-					</v-list-item>
-					<v-list-item key="project">
-						<v-list-item-icon>
-							<v-icon>mdi-star</v-icon>
-						</v-list-item-icon>
-						<v-list-item-title>项目</v-list-item-title>
+						<v-list-item-title>{{ item.title }}</v-list-item-title>
 					</v-list-item>
 				</v-list-item-group>
 			</v-list>
@@ -49,20 +37,33 @@ export default {
 	name: "SpaceSidebar",
 	data: () => ({
 		pin: null,
-		selected: 0,
+		selected: -1,
+		sideBar: [
+			{icon: "mdi-folder", title: "文件", to: "file"},
+			{icon: "mdi-star", title: "项目", to: "project"},
+			{icon: "mdi-group", title: "群组", to: "group"},
+		],
 	}),
 	mounted() {
 		this.pin = document.body.offsetWidth >= 800;
-		switch (this.$route.params.pathMatch){
+		//预计使用导航守卫实现该功能
+		// let path = this.$route.params.pathMatch;
+		// if (path) {
+		// 	for (let index in this.sideBar) {
+		// 		if (this.sideBar[index].to === path) {
+		// 			this.selected = index;
+		// 			break;
+		// 		}
+		// 	}
+		// }
 
-		}
 	},
 	watch: {
 		pin() {
 			this.$emit("expand", this.pin);
 		},
 		selected() {
-			this.$router.push("/user/space/" + this.selected);
+			this.$router.push("/user/space/" + this.sideBar[this.selected].to);
 		},
 	},
 };
