@@ -18,19 +18,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	let path = to.path.split("/");
-	if (window.onloaded === true || path[1] === "redirect") {
-		next();
-	} else if (localStorage.getItem("mall_session") === null) {
-		if (path[1] === "account" || path[1] === "order") {
-			next({path: "/user/login", query: {redirect: to.path}});
-		} else {
-			next();
-		}
-	} else {
-		next({path: "/redirect", query: {redirect: to.path, do: "setCookie"}});
-	}
+	// let path = to.path.split("/");
+	// if (window.onloaded === true || path[1] === "redirect") {
+	// 	next();
+	// } else if (localStorage.getItem("mall_session") === null) {
+	// 	if (path[1] === "account" || path[1] === "order") {
+	// 		next({path: "/user/login", query: {redirect: to.path}});
+	// 	} else {
+	// 		next();
+	// 	}
+	// } else {
+	// 	next({path: "/redirect", query: {redirect: to.path, do: "setCookie"}});
+	// }
 	console.log(to, from, window.onloaded);
+	next();
 });
 
 

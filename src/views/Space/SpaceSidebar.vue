@@ -19,7 +19,7 @@
 			<v-divider></v-divider>
 			<v-list nav dense>
 				<v-list-item-group v-model="selected" color="primary">
-					<v-list-item v-for="(item,index) in sideBar" :key="index">
+					<v-list-item v-for="(item,index) in sideBar" :key="index" @click="redirect(index)">
 						<v-list-item-icon>
 							<v-icon>{{ item.icon }}</v-icon>
 						</v-list-item-icon>
@@ -37,33 +37,39 @@ export default {
 	name: "SpaceSidebar",
 	data: () => ({
 		pin: null,
-		selected: -1,
 		sideBar: [
+			{icon: "mdi-account-circle", title: "个人资料", to: "info"},
 			{icon: "mdi-folder", title: "文件", to: "file"},
 			{icon: "mdi-star", title: "项目", to: "project"},
 			{icon: "mdi-group", title: "群组", to: "group"},
 		],
 	}),
+	methods: {
+		redirect(e) {
+			this.$router.push("/user/space/" + this.sideBar[e].to);
+		},
+	},
+	computed: {
+		selected: {
+			get() {
+				let name = this.$store.state.Run.url[3];
+				for (let index in this.sideBar) {
+					if (this.sideBar[index].to === name) {
+						return parseInt(index);
+					}
+				}
+				return -1;
+			},
+			set() {
+			},
+		},
+	},
 	mounted() {
 		this.pin = document.body.offsetWidth >= 800;
-		//预计使用导航守卫实现该功能
-		// let path = this.$route.params.pathMatch;
-		// if (path) {
-		// 	for (let index in this.sideBar) {
-		// 		if (this.sideBar[index].to === path) {
-		// 			this.selected = index;
-		// 			break;
-		// 		}
-		// 	}
-		// }
-
 	},
 	watch: {
 		pin() {
 			this.$emit("expand", this.pin);
-		},
-		selected() {
-			this.$router.push("/user/space/" + this.sideBar[this.selected].to);
 		},
 	},
 };

@@ -17,10 +17,11 @@ const routesRaw = [{
 		}],
 	}, {
 		path: "space",
+		redirect: "/user/space/info",
 		component: () => import( /* webpackChunkName: "user" */ "@/views/Space/Space"),
 		children: [{
-			path: "login",
-			component: () => import( /* webpackChunkName: "user" */ "@/views/Auth/Login"),
+			path: "info",
+			component: () => import( /* webpackChunkName: "user" */ "@/views/Space/Info"),
 		}, {
 			path: "*",
 			component: () => import( /* webpackChunkName: "util" */ "@/views/Utils/E404"),

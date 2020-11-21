@@ -1,6 +1,5 @@
 <template>
 	<v-app>
-
 		<Header></Header>
 		<v-main class="content">
 			<router-view></router-view>
@@ -17,10 +16,14 @@ export default {
 	name: "App",
 	components: {
 		Header,
-		Footer
+		Footer,
 	},
 	mounted() {
-		window.onloaded = true;
+		window.loaded = true;
+		this.$router.afterEach((to) => {
+			let path = to.path.split("/");
+			this.$store.commit("Run/updateUrl", path);
+		});
 	},
 	data: () => ({}),
 };
