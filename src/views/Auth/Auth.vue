@@ -1,9 +1,9 @@
 <template>
 	<div class="container">
-		<div class="bg" :style="{ backgroundImage: 'url('+url+')' }"></div>
+		<div class="bg" :style="{ backgroundImage: 'url('+imgUrl+')' }"></div>
 		<v-container class="vertical-center">
 			<v-card width="400" class="margin-auto">
-				<v-img height="132px" :src="url" class="title-img">
+				<v-img height="132px" :src="imgUrl" class="title-img">
 					<v-card-title class="white--text mt-8 title-container">
 						<div class="text-h4 margin-auto">
 							Project Manager
@@ -22,15 +22,12 @@
 export default {
 	name: "Auth",
 	data: () => ({
-		url: "",
 	}),
 	mounted() {
-		this.url = this.getPic();
-		// this.$router.push("/user/auth/login");
 	},
-	methods: {
-		getPic() {
-			return "https://api.bingdou.net/pic/bing/";//此处在获取基本信息时获取
+	computed: {
+		imgUrl() {
+			return this.$store.state.Run.authImg;
 		},
 	},
 };

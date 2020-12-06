@@ -6,6 +6,11 @@ import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import qs from "qs";
 
+if (process.env.NODE_ENV === "production") {
+	axios.defaults.baseURL = "/api/";
+} else {
+	axios.defaults.baseURL = "http://localhost:8088/api/";
+}
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 Vue.prototype["$axios"] = {
 	$get: axios.get,

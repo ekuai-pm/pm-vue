@@ -19,11 +19,16 @@ export default {
 		Footer,
 	},
 	mounted() {
-		window.loaded = true;
 		this.$router.afterEach((to) => {
 			let path = to.path.split("/");
 			this.$store.commit("Run/updateUrl", path);
 		});
+		this.$axios.$get("/getImgUrl")
+			.then((res) => {
+				this.$store.commit("Run/updateAuthImg", "https://www.bing.com" + res.data.images[0].url);
+			});
+
+		window.loaded = true;
 	},
 	data: () => ({}),
 };
